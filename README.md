@@ -4,16 +4,17 @@ Node Js based server which works like a proxy to emulate page rendering by brows
 
 - Send request to server and set target url in get params, like this:
 ```bash
-curl 'http://localhost:8081?targeturl=http%3A%2F%2Fgoogle.com&requesttimeout=1000'
+curl 'http://localhost:8081?targeturl=http%3A%2F%2Fgoogle.com&strategy=timeout&meta=1000'
 ```
 
-, where `targeturl` is url encoded url to request, `requesttimeout` is timeout to wait for javascript executing
+, where `targeturl` is url encoded url to request, `meta` data for selected strategies
 
 ## Options
 Options should be passed by get params in request:
 
 - `targeturl` - url encoded url to request
-- `requesttimeout` - timeout to wait for javascript executing
+- `strategy` - strategy to determine when page is rendered, available values: `timeout`, `selector`
+- `meta` - metadata for selected strategy, when strategy is `timeout` it will be time to wait in ms before page content will be returned, when strategy is `selector` it will be CSS selector of an element, and when this element becomes available page content will be returned
 
 ## Installation
 
